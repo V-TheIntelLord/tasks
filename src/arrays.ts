@@ -5,7 +5,10 @@
  * the number twice.
  */
 export function bookEndList(numbers: number[]): number[] {
-    return numbers;
+    if (numbers.length === 1) return [numbers[0], numbers[0]];
+    const result = [...numbers];
+    result.splice(1, result.length - 2);
+    return result;
 }
 
 /**
@@ -13,7 +16,8 @@ export function bookEndList(numbers: number[]): number[] {
  * number has been tripled (multiplied by 3).
  */
 export function tripleNumbers(numbers: number[]): number[] {
-    return numbers;
+    const tripled = numbers.map((num: number): number => num * 3);
+    return tripled;
 }
 
 /**
@@ -21,7 +25,8 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    return [];
+    const integers = numbers.map((num: string): number => parseInt(num) || 0);
+    return integers;
 }
 
 /**
@@ -32,7 +37,14 @@ export function stringsToIntegers(numbers: string[]): number[] {
  */
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
-    return [];
+    const noDollarSigns = amounts.map((amount: string): string =>
+        amount.includes("$") ? amount.replace("$", "") : amount,
+    );
+    console.log(noDollarSigns);
+    const prices = noDollarSigns.map(
+        (price: string): number => parseInt(price) || 0,
+    );
+    return prices;
 };
 
 /**
@@ -41,7 +53,13 @@ export const removeDollars = (amounts: string[]): number[] => {
  * in question marks ("?").
  */
 export const shoutIfExclaiming = (messages: string[]): string[] => {
-    return [];
+    const without_questions = messages.filter(
+        (message: string): boolean => !message.includes("?"),
+    );
+    const result = without_questions.map((new_message: string): string =>
+        new_message.includes("!") ? new_message.toUpperCase() : new_message,
+    );
+    return result;
 };
 
 /**
@@ -49,7 +67,10 @@ export const shoutIfExclaiming = (messages: string[]): string[] => {
  * 4 letters long.
  */
 export function countShortWords(words: string[]): number {
-    return 0;
+    const short_words = words.filter(
+        (word: string): boolean => word.length < 4,
+    );
+    return short_words.length;
 }
 
 /**
@@ -58,7 +79,14 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    return false;
+    if (colors.length === 0) return true;
+    const RGB_colors = colors.filter(
+        (color: string): boolean =>
+            color === "red" || color === "green" || color === "blue",
+    );
+    let result: boolean;
+    RGB_colors.length === colors.length ? (result = true) : (result = false);
+    return result;
 }
 
 /**
@@ -69,7 +97,13 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    return "";
+    if (addends.length === 0) return "0=0";
+    const sum = addends.reduce(
+        (count: number, addend: number) => count + addend,
+        0,
+    );
+    const result = addends.join("+");
+    return sum + "=" + result;
 }
 
 /**
@@ -82,5 +116,21 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    return [];
+    const negative_index = values.findIndex((num) => num < 0);
+    //console.log(negative_index);
+    const sum_range =
+        negative_index === -1 ? values : values.slice(0, negative_index);
+    //console.log(sum_range);
+    const sum = sum_range.reduce(
+        (count: number, int: number) => count + int,
+        0,
+    );
+    //console.log(sum);
+    let result = [...values];
+    //console.log(result);
+    negative_index !== -1 ?
+        result.splice(negative_index + 1, 0, sum)
+    :   (result = [...result, sum]);
+    //console.log(result);
+    return result;
 }
