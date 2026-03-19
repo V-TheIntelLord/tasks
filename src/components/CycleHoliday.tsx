@@ -31,6 +31,7 @@ export function CycleHoliday(): React.JSX.Element {
     }
     return (
         <span>
+            <h3>Cycle Holiday</h3>
             <div>
                 <Button onClick={cycleAlpha}>Advance by Alphabet</Button>
             </div>

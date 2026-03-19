@@ -7,6 +7,7 @@ export function RevealAnswer(): React.JSX.Element {
     const [isVisible, setIsVisible] = useState<boolean>(false);
     return (
         <span>
+            <h3>Reveal Answer</h3>
             <Button
                 onClick={() => {
                     setIsVisible(!isVisible);

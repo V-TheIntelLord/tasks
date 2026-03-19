@@ -6,6 +6,7 @@ export function StartAttempt(): React.JSX.Element {
     const [inProgress, changeProgress] = useState<boolean>(false);
     return (
         <span>
+            <h3>Start Attempt</h3>
             <Button
                 onClick={() => {
                     changeProgress(true);

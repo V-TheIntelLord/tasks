@@ -17,6 +17,7 @@ export function TwoDice(): React.JSX.Element {
     const [rightDie, rollRightDie] = useState<number>(1);
     return (
         <span>
+            <h3>Two Dice</h3>
             <div>
                 <Button
                     onClick={() => {
